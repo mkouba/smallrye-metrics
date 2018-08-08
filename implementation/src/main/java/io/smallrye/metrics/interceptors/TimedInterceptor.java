@@ -47,24 +47,24 @@ public class TimedInterceptor {
     private final MetricResolver resolver;
 
     @Inject
-    private TimedInterceptor(@Intercepted Bean<?> bean, MetricRegistry registry) {
+    TimedInterceptor(@Intercepted Bean<?> bean, MetricRegistry registry) {
         this.bean = bean;
         this.registry = registry;
         this.resolver = new MetricResolver();
     }
 
     @AroundConstruct
-    private Object timedConstructor(InvocationContext context) throws Exception {
+    Object timedConstructor(InvocationContext context) throws Exception {
         return timedCallable(context, context.getConstructor());
     }
 
     @AroundInvoke
-    private Object timedMethod(InvocationContext context) throws Exception {
+    Object timedMethod(InvocationContext context) throws Exception {
         return timedCallable(context, context.getMethod());
     }
 
     @AroundTimeout
-    private Object timedTimeout(InvocationContext context) throws Exception {
+    Object timedTimeout(InvocationContext context) throws Exception {
         return timedCallable(context, context.getMethod());
     }
 

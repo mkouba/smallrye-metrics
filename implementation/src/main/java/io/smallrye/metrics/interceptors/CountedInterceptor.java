@@ -47,24 +47,24 @@ public class CountedInterceptor {
     private final MetricResolver resolver;
 
     @Inject
-    private CountedInterceptor(@Intercepted Bean<?> bean, MetricRegistry registry) {
+    CountedInterceptor(@Intercepted Bean<?> bean, MetricRegistry registry) {
         this.bean = bean;
         this.registry = registry;
         this.resolver = new MetricResolver();
     }
 
     @AroundConstruct
-    private Object countedConstructor(InvocationContext context) throws Exception {
+    Object countedConstructor(InvocationContext context) throws Exception {
         return countedCallable(context, context.getConstructor());
     }
 
     @AroundInvoke
-    private Object countedMethod(InvocationContext context) throws Exception {
+    Object countedMethod(InvocationContext context) throws Exception {
         return countedCallable(context, context.getMethod());
     }
 
     @AroundTimeout
-    private Object countedTimeout(InvocationContext context) throws Exception {
+    Object countedTimeout(InvocationContext context) throws Exception {
         return countedCallable(context, context.getMethod());
     }
 

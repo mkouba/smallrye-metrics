@@ -51,14 +51,14 @@ public class MetricsInterceptor {
     private final MetricResolver resolver;
 
     @Inject
-    private MetricsInterceptor(MetricRegistry registry) {
+    MetricsInterceptor(MetricRegistry registry) {
         this.registry = registry;
         this.resolver = new MetricResolver();
         // LOGGER.infof("MetricsInterceptor.ctor, names=%s\n", registry.getNames());
     }
 
     @AroundConstruct
-    private Object metrics(InvocationContext context) throws Exception {
+    Object metrics(InvocationContext context) throws Exception {
         Class<?> bean = context.getConstructor().getDeclaringClass();
         log.infof("MetricsInterceptor, bean=%s\n", bean);
         // Registers the bean constructor metrics

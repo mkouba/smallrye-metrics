@@ -26,7 +26,7 @@ public class MetricNameFactory {
 
     @Produces
     @ApplicationScoped
-    private MetricName metricName(BeanManager manager) {
+    MetricName metricName() {
         return new SeMetricName(Collections.emptySet()); // TODO
     }
 }

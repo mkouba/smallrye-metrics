@@ -46,7 +46,7 @@ public class MetricProducer {
     MetricRegistry applicationRegistry;
 
     @Inject
-    private MetricName metricName;
+    MetricName metricName;
 
     @Produces
     <T> Gauge<T> getGauge(InjectionPoint ip) {
